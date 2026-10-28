@@ -26,8 +26,10 @@
 \ProvidesClass{pnas-new}[2023/05/03, v1.46]
 \AtEndOfClass{\RequirePackage{microtype}}
 % Option for line numbers
-%\newif\if@pnaslineno
-%\DeclareOption{lineno}{\@pnaslinenotrue}
+\newif\if@pnaslineno
+\@pnaslinenotrue
+\DeclareOption{lineno}{\@pnaslinenotrue}
+\DeclareOption{nolineno}{\@pnaslinenofalse}
 \newif\if@pnasdraftwatermark
 \@pnasdraftwatermarktrue
 \DeclareOption{draftwatermark}{\@pnasdraftwatermarktrue}
@@ -296,10 +298,14 @@
   \end{picture}%
 }
 
-\fancyhead[LO]{\PNAS@linecountLO}
-\fancyhead[RO]{\PNAS@linecountRO}
-\fancyhead[LE]{\PNAS@linecountLE}
-\fancyhead[RE]{\PNAS@linecountRE}
+\if@pnaslineno
+  \fancyhead[LO]{\PNAS@linecountLO}
+  \fancyhead[RO]{\PNAS@linecountRO}
+  \fancyhead[LE]{\PNAS@linecountLE}
+  \fancyhead[RE]{\PNAS@linecountRE}
+\else
+  \fancyhead[LO,RO,LE,RE]{}
+\fi
 }
 
 \newsavebox{\PNAS@linecount@bxsecpage}
@@ -343,10 +349,14 @@
   \end{picture}%
 }
 
-\fancyhead[LO]{\PNAS@linecountsecpageLO}
-\fancyhead[RO]{\PNAS@linecountsecpageRO}
-\fancyhead[LE]{\PNAS@linecountsecpageLE}
-\fancyhead[RE]{\PNAS@linecountsecpageRE}
+\if@pnaslineno
+  \fancyhead[LO]{\PNAS@linecountsecpageLO}
+  \fancyhead[RO]{\PNAS@linecountsecpageRO}
+  \fancyhead[LE]{\PNAS@linecountsecpageLE}
+  \fancyhead[RE]{\PNAS@linecountsecpageRE}
+\else
+  \fancyhead[LO,RO,LE,RE]{}
+\fi
 % Headers
 %\fancyhead[LE,RO]{}
 %\fancyhead[LO,RE]{}

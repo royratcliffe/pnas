@@ -48,6 +48,10 @@ classoption:
 
 Use `draftwatermark` to explicitly enable the watermark.
 
+Line numbers are shown by default. Add `nolineno` to `classoption` to
+remove them, or use `lineno` to explicitly enable them. This setting is
+independent of the watermark.
+
 To set a corresponding author, ensure that the attribute "corresponding" is true and that they have an email listed.
 
 For proper formatting, each affiliation should be given a letter id (like `a`, `b`, ..., `z`).
