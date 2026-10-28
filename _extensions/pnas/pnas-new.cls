@@ -26,8 +26,14 @@
 \ProvidesClass{pnas-new}[2023/05/03, v1.46]
 \AtEndOfClass{\RequirePackage{microtype}}
 % Option for line numbers
-%\newif\if@pnaslineno
-%\DeclareOption{lineno}{\@pnaslinenotrue}
+\newif\if@pnaslineno
+\@pnaslinenotrue
+\DeclareOption{lineno}{\@pnaslinenotrue}
+\DeclareOption{nolineno}{\@pnaslinenofalse}
+\newif\if@pnasdraftwatermark
+\@pnasdraftwatermarktrue
+\DeclareOption{draftwatermark}{\@pnasdraftwatermarktrue}
+\DeclareOption{nodraftwatermark}{\@pnasdraftwatermarkfalse}
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{extarticle}}
 \ProcessOptions*
 \LoadClass{extarticle}
@@ -103,7 +109,11 @@
 
 %% Watermark
 \newboolean{displaywatermark}
-\setboolean{displaywatermark}{true} % Set to false to remove the watermark
+\if@pnasdraftwatermark
+  \setboolean{displaywatermark}{true}
+\else
+  \setboolean{displaywatermark}{false}
+\fi
 \AtBeginDocument{%
   \ifthenelse{\boolean{displaywatermark}}{%
   \RequirePackage{draftwatermark}
@@ -244,8 +254,11 @@
 \RequirePackage{lastpage}  % Number of pages in the document
 \pagestyle{fancy}          % Enables the custom headers/footers
 
+\providecommand{\footerjournal}{PNAS}
+\providecommand{\footervolume}{XXX}
+\providecommand{\footernumber}{XX}
 \fancypagestyle{firststyle}{
-   \fancyfoot[R]{\footerfont PNAS\hspace{7pt}|\hspace{7pt}\textbf{\today}\hspace{7pt}|\hspace{7pt}vol. XXX\hspace{7pt}|\hspace{7pt}no. XX\hspace{7pt}|\hspace{7pt}\textbf{\thepage\textendash\pageref{LastPage}}}
+   \fancyfoot[R]{\footerfont\footerjournal\hspace{7pt}|\hspace{7pt}\textbf{\today}\hspace{7pt}|\hspace{7pt}vol. \footervolume\hspace{7pt}|\hspace{7pt}no. \footernumber\hspace{7pt}|\hspace{7pt}\textbf{\thepage\textendash\pageref{LastPage}}}
    \fancyfoot[L]{\footerfont\@ifundefined{@doi}{}{\@doi}}
 
 \newsavebox{\PNAS@linecount@bx}
@@ -288,10 +301,14 @@
   \end{picture}%
 }
 
-\fancyhead[LO]{\PNAS@linecountLO}
-\fancyhead[RO]{\PNAS@linecountRO}
-\fancyhead[LE]{\PNAS@linecountLE}
-\fancyhead[RE]{\PNAS@linecountRE}
+\if@pnaslineno
+  \fancyhead[LO]{\PNAS@linecountLO}
+  \fancyhead[RO]{\PNAS@linecountRO}
+  \fancyhead[LE]{\PNAS@linecountLE}
+  \fancyhead[RE]{\PNAS@linecountRE}
+\else
+  \fancyhead[LO,RO,LE,RE]{}
+\fi
 }
 
 \newsavebox{\PNAS@linecount@bxsecpage}
@@ -335,10 +352,14 @@
   \end{picture}%
 }
 
-\fancyhead[LO]{\PNAS@linecountsecpageLO}
-\fancyhead[RO]{\PNAS@linecountsecpageRO}
-\fancyhead[LE]{\PNAS@linecountsecpageLE}
-\fancyhead[RE]{\PNAS@linecountsecpageRE}
+\if@pnaslineno
+  \fancyhead[LO]{\PNAS@linecountsecpageLO}
+  \fancyhead[RO]{\PNAS@linecountsecpageRO}
+  \fancyhead[LE]{\PNAS@linecountsecpageLE}
+  \fancyhead[RE]{\PNAS@linecountsecpageRE}
+\else
+  \fancyhead[LO,RO,LE,RE]{}
+\fi
 % Headers
 %\fancyhead[LE,RO]{}
 %\fancyhead[LO,RE]{}
@@ -348,7 +369,7 @@
 \rfoot{}%
 
 \fancyfoot[LE]{\footerfont\textbf{\thepage}\hspace{7pt}|\hspace{7pt}\@ifundefined{@doi}{}{\@doi}}
-\fancyfoot[RO]{\footerfont PNAS\hspace{7pt}|\hspace{7pt}\textbf{\today}\hspace{7pt}|\hspace{7pt}vol. XXX\hspace{7pt}|\hspace{7pt}no. XX\hspace{7pt}|\hspace{7pt}\textbf{\thepage}}
+\fancyfoot[RO]{\footerfont\footerjournal\hspace{7pt}|\hspace{7pt}\textbf{\today}\hspace{7pt}|\hspace{7pt}vol. \footervolume\hspace{7pt}|\hspace{7pt}no. \footernumber\hspace{7pt}|\hspace{7pt}\textbf{\thepage}}
 \fancyfoot[RE,LO]{\footerfont\@ifundefined{@leadauthor}{}{\@leadauthor}\ifnum \value{authors} > 1\hspace{5pt}\textit{et al.}\fi}
 
 \renewcommand{\headrulewidth}{0pt}% % No header rule

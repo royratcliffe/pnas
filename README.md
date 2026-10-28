@@ -35,6 +35,23 @@ classoption:
  - twocolumn
  - twoside
 ```
+
+A `DRAFT` watermark is shown by default. To remove it, add
+`nodraftwatermark` to the class options:
+
+```yaml
+classoption:
+ - twocolumn
+ - twoside
+ - nodraftwatermark
+```
+
+Use `draftwatermark` to explicitly enable the watermark.
+
+Line numbers are shown by default. Add `nolineno` to `classoption` to
+remove them, or use `lineno` to explicitly enable them. This setting is
+independent of the watermark.
+
 To set a corresponding author, ensure that the attribute "corresponding" is true and that they have an email listed.
 
 For proper formatting, each affiliation should be given a letter id (like `a`, `b`, ..., `z`).
@@ -54,4 +71,3 @@ Here is the source code for a minimal sample document: [template.qmd](template.q
 This modifies the Overleaf PNAS Template, available at <https://www.overleaf.com/latex/templates/template-for-preparing-your-research-report-submission-to-pnas-using-overleaf-2023/whbdryzwztnd>. The original template is licensed under the [LaTeX Project Public License 1.3c](https://www.latex-project.org/lppl/lppl-1-3c/). The additional style file for Brief Reports comes from <https://www.overleaf.com/latex/templates/template-for-preparing-your-brief-report-submission-to-pnas-using-overleaf-2023/kbxgqwycmpjq> and is also licensed under the LaTeX Project Public License 1.3c.
 
 The template within is derived from this and makes modifications to separate into the full document into Quarto "partials". All modifications can be seen in this repo. 
-

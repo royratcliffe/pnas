@@ -43,13 +43,19 @@ author_contributions: "Please provide details of author contributions here."
 conflict_of_interest: "Please declare any competing interests here."
 equal-contributor: "A.O.(Author One) contributed equally to this work with A.T. (Author Two) (remove if not applicable)."
 keywords: [template, demo]
-acknowledgements: | 
+acknowledgements: |
   Please include your acknowledgments here, set in a single paragraph. Please do not include any acknowledgments in the Supporting Information, or anywhere else in the manuscript.
-bibliography: bibliography.bib  
+bibliography: bibliography.bib
 fontsize: "9pt"
 classoption:
  - twocolumn
  - twoside
+ - nodraftwatermark
+ - nolineno
+footer-journal: "PNAS"
+footer-volume: "XXX"
+footer-number: "XX"
+doi: "www.pnas.org/cgi/doi/10.1073/pnas.XXXXXXXXXX"
 ---
 
 \dropcap{A} word of warning: This template will fail with a "Not in outer par mode" warning if you try to compile it with less than one page of text.
