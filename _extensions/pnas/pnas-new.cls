@@ -28,6 +28,10 @@
 % Option for line numbers
 %\newif\if@pnaslineno
 %\DeclareOption{lineno}{\@pnaslinenotrue}
+\newif\if@pnasdraftwatermark
+\@pnasdraftwatermarktrue
+\DeclareOption{draftwatermark}{\@pnasdraftwatermarktrue}
+\DeclareOption{nodraftwatermark}{\@pnasdraftwatermarkfalse}
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{extarticle}}
 \ProcessOptions*
 \LoadClass{extarticle}
@@ -103,7 +107,11 @@
 
 %% Watermark
 \newboolean{displaywatermark}
-\setboolean{displaywatermark}{true} % Set to false to remove the watermark
+\if@pnasdraftwatermark
+  \setboolean{displaywatermark}{true}
+\else
+  \setboolean{displaywatermark}{false}
+\fi
 \AtBeginDocument{%
   \ifthenelse{\boolean{displaywatermark}}{%
   \RequirePackage{draftwatermark}
