@@ -27,6 +27,10 @@ $if(runningauthor)$
 \leadauthor{$runningauthor$}
 $endif$
 
+$if(footer-journal)$
+\renewcommand{\footerjournal}{$footer-journal$}
+$endif$
+
 $if(significance)$
 \significancestatement{$significance$}
 $endif$
