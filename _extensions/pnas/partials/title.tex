@@ -31,6 +31,13 @@ $if(footer-journal)$
 \renewcommand{\footerjournal}{$footer-journal$}
 $endif$
 
+$if(footer-volume)$
+\renewcommand{\footervolume}{$footer-volume$}
+$endif$
+$if(footer-number)$
+\renewcommand{\footernumber}{$footer-number$}
+$endif$
+
 $if(significance)$
 \significancestatement{$significance$}
 $endif$
